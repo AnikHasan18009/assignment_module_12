@@ -18,13 +18,14 @@
       background-image: url("bmi.jpg");
       background-size: cover;
       background-repeat: no-repeat;
+      flex-direction: column;
     }
 
     #form{
-      width:60%;
-      height:auto;
+      width:30%;
+      height:500px;
       background-color:rgb(87, 9, 233);
-      padding: 20px;
+      padding: 10px;
       border-radius: 30px;
       color: beige;
       opacity: .7;
@@ -34,21 +35,21 @@
     }
 
     input{
-   padding: 20px;
+   padding: 10px;
       border-radius: 30px;
       outline: none;
-      font-size: 30px;
+      font-size: 20px;
     }
     td,th{
-      padding: 15px;
+      padding: 10px;
       text-align: center;
     }
     
     label{
-      font-size: 30px;
+      font-size: 20px;
     }
     h2{
-      font-size: 50px;
+      font-size: 30px;
     }
     .decreaseOpacity{
       opacity: .7;
@@ -56,14 +57,18 @@
 
     #calculateBtn{
       padding: 10px;
-      font-size:30px;
+      font-size:20px;
       border-radius: 30px;
       color:rgb(106, 0, 255);
       font-weight: bolder;
     }
     #result{
-
+      visibility: hidden;
+font-size: 30px;
+    color: wheat;
       font-weight: bolder;
+      background-color:rgb(106, 0, 255);
+      padding: 15px;
     }
   </style>
   <script>
@@ -72,9 +77,11 @@
     {
       let weight= Number.parseFloat(document.getElementById("weightInput").value);
       let height=Number.parseFloat(document.getElementById("heightInput").value);
+      let result=    document.getElementById("result");
+      result.style.visibility="visible";
       if(isNaN(weight)|| isNaN(height) || weight<=0 ||height<=0)
       {
-         document.getElementById("result").innerHTML="Error! Please enter inputs correctly."
+        result.innerHTML="Error! Please enter inputs correctly."
       }
       else{
         bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
@@ -98,7 +105,8 @@
     else{
       category = "Extremely Obese 😭";
     }
-    document.getElementById("result").innerHTML="BMI = "+bmi+" ("+category+ ") ";
+ 
+    result.innerHTML="BMI = "+bmi+" ("+category+ ") ";
       }
     }
   </script>
@@ -131,13 +139,11 @@
           <tr>
             <td><button type="button" id="calculateBtn" onclick="calculateBMI()">Calculate</button></td>
           </tr>
-          <tr>
-            <td><h2 id="result"></h2></td>
-          </tr>
+         
         </table>
     
     </div>
-
+<div id="result"></div>
   </div>
 </body>
 </html>
